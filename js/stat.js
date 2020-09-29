@@ -42,7 +42,8 @@ var BAR_GAP = 50;
 var MY_COLOR = 'rgba(255, 0, 0, 1)';
 // Цвет колонок других игроков — синий,
 //      а насыщенность задаётся случайным образом.
-var GIST_COLOR = 'rgba(0, 0, 255,'
+var GIST_HSL_COLOR = 'hsl(240,'
+var GIST_HSL_LIGHTNESS = '50%)'
 // Времена игроков располагаются над колонками.
 var TIME_GAP = 10;
 // Имена игроков — под колонками гистограммы.
@@ -105,7 +106,7 @@ window.renderStatistics = function(ctx, players, times) {
       ctx.fillStyle = MY_COLOR;
     }
     else {
-      ctx.fillStyle = GIST_COLOR + Math.random() + ')';
+      ctx.fillStyle = GIST_HSL_COLOR + 100* Math.random() + '%,' + GIST_HSL_LIGHTNESS;
     }
 
 		ctx.fillRect(
