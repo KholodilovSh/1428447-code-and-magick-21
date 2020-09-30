@@ -42,8 +42,8 @@ const BAR_GAP = 50;
 const MY_COLOR = `rgba(255, 0, 0, 1)`;
 // Цвет колонок других игроков — синий,
 //      а насыщенность задаётся случайным образом.
-const GIST_HSL_COLOR = `hsl(240,`;
-const GIST_HSL_LIGHTNESS = `50%)`;
+// const GIST_HSL_COLOR = `hsl(240,`;
+// const GIST_HSL_LIGHTNESS = `50%)`;
 // Времена игроков располагаются над колонками.
 const TIME_GAP = 10;
 // Имена игроков — под колонками гистограммы.
@@ -65,6 +65,8 @@ const getMaxElement = function (arr) {
   return maxElement;
 };
 
+const randomNumber = (minNumber = 0, maxNumber = 100, roundDigit = 0) => minNumber + Math.round((maxNumber - minNumber) * Math.random(), roundDigit);
+
 // renderStatistics - метод объекта window
 //    со следующими аргументами:
 //        ctx — канвас на котором рисуется игра.
@@ -85,12 +87,11 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.fillText(`Ура вы победили!`, CLOUD_X + TEXT_X, CLOUD_Y + TEXT_Y);
   ctx.fillText(`Список результатов: `, CLOUD_X + TEXT_X, CLOUD_Y + TEXT_X + TEXT_GAP);
 
-  let maxTime = getMaxElement(times);
-
+  const maxTime = getMaxElement(times);
 
   for (let i = 0; i < players.length; i++) {
-    let barHeight = GIST_HEIGHT * times[i] / maxTime;
-    let barNextX = CLOUD_X + GIST_X + (BAR_WIDTH + BAR_GAP) * i;
+    const barHeight = GIST_HEIGHT * times[i] / maxTime;
+    const barNextX = CLOUD_X + GIST_X + (BAR_WIDTH + BAR_GAP) * i;
 
     ctx.fillStyle = FONT_COLOR;
     ctx.fillText(players[i],
@@ -103,8 +104,8 @@ window.renderStatistics = function (ctx, players, times) {
         GIST_Y + GIST_HEIGHT - barHeight - TIME_GAP
     );
 
-    ctx.fillStyle = (players[i] === `Вы`) ? (MY_COLOR) :
-      (GIST_HSL_COLOR + randomNumber() + `%,` + GIST_HSL_LIGHTNESS);
+    ctx.fillStyle = (players[i] === `Вы`) ? MY_COLOR :
+      `hsl(240, ${randomNumber()}%, 50%)`;
 
     ctx.fillRect(
         barNextX,
@@ -114,5 +115,3 @@ window.renderStatistics = function (ctx, players, times) {
     );
   }
 };
-
-const randomNumber = () => Math.round(100 * Math.random());
