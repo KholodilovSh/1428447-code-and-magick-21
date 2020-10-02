@@ -7,4 +7,5 @@ env:
 extends:
   "htmlacademy/es5.5"
 
+rules:
   prefer-const: error
