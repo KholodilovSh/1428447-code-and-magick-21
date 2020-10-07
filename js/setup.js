@@ -6,6 +6,7 @@ const HERO_SURNAMES = [`да Марья`, `Верон`, `Мирабелла`, `�
 const HERO_COAT = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
 const HERO_EYES = [`black`, `red`, `blue`, `yellow`, `green`];
 const HERO_FIREBALL = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
+const KEYS = {escape: `Escape`, enter: `Enter`};
 
 const wizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 const blockSetup = document.querySelector(`.setup`);
@@ -47,13 +48,13 @@ setupFireBall.addEventListener(`click`, function () {
 });
 
 setupUserName.addEventListener(`keydown`, function (evt) {
-  if (evt.key === `Escape`) {
+  if (evt.key === KEYS.escape) {
     evt.stopPropagation();
   }
 });
 
 const onPopupEscPress = function (evt) {
-  if (evt.key === `Escape`) {
+  if (evt.key === KEYS.escape) {
     evt.preventDefault();
     closePopup();
   }
@@ -76,7 +77,7 @@ setupOpen.addEventListener(`click`, function () {
 });
 
 setupOpen.addEventListener(`keydown`, function (evt) {
-  if (evt.key === `Enter`) {
+  if (evt.key === KEYS.enter) {
     openPopup();
   }
 });
@@ -86,7 +87,7 @@ setupClose.addEventListener(`click`, function () {
 });
 
 setupClose.addEventListener(`keydown`, function (evt) {
-  if (evt.key === `Enter`) {
+  if (evt.key === KEYS.enter) {
     closePopup();
   }
 });
