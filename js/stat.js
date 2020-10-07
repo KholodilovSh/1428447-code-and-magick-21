@@ -65,7 +65,7 @@ const getMaxElement = function (arr) {
   return maxElement;
 };
 
-const randomNumber = (minNumber = 0, maxNumber = 100, roundDigit = 0) => minNumber + Math.round((maxNumber - minNumber) * Math.random(), roundDigit);
+const getRandomNumberStat = (minNumber = 0, maxNumber = 100, roundDigit = 0) => minNumber + Math.round((maxNumber - minNumber) * Math.random(), roundDigit);
 
 // renderStatistics - метод объекта window
 //    со следующими аргументами:
@@ -105,7 +105,7 @@ window.renderStatistics = function (ctx, players, times) {
     );
 
     ctx.fillStyle = (players[i] === `Вы`) ? MY_COLOR :
-      `hsl(240, ${randomNumber()}%, 50%)`;
+      `hsl(240, ${getRandomNumberStat()}%, 50%)`;
 
     ctx.fillRect(
         barNextX,
