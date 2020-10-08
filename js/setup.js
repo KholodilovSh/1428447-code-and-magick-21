@@ -43,7 +43,7 @@ wizardEyes.addEventListener(`click`, function () {
 
 setupFireBall.addEventListener(`click`, function () {
   indexFireball = (indexFireball + 1) % HERO_FIREBALL.length;
-  setupFireBall.style.backGroundColor = HERO_FIREBALL[indexFireball];
+  setupFireBall.style.backgroundColor = HERO_FIREBALL[indexFireball];
   inputFireball.value = HERO_FIREBALL[indexFireball];
 });
 
