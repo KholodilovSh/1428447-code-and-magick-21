@@ -19,16 +19,16 @@ const setupUserName = blockSetup.querySelector(`.setup-user-name`);
 
 const setupFireBall = blockSetup.querySelector(`.setup-fireball-wrap`);
 const inputFireball = blockSetup.querySelector(`.js-fireball-color`);
-let indexFireball = 0;
+const indexFireball = 0;
 
 const setupWizard = blockSetup.querySelector(`.setup-wizard`);
 const wizardCoat = setupWizard.querySelector(`.wizard-coat`);
 const inputCoat = blockSetup.querySelector(`.js-coat-color`);
-let indexCoat = 0;
+const indexCoat = 0;
 
 const wizardEyes = setupWizard.querySelector(`.wizard-eyes`);
 const inputEyes = blockSetup.querySelector(`.js-eyes-color`);
-let indexEyes = 0;
+const indexEyes = 0;
 
 const upLoad = blockSetup.querySelector(`.upload`);
 const setupCoord = {
