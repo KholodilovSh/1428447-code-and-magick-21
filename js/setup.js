@@ -10,6 +10,7 @@ const KEYS = {escape: `Escape`, enter: `Enter`};
 
 const wizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 const blockSetup = document.querySelector(`.setup`);
+window.blockSetup = blockSetup;
 const similarListElement = blockSetup.querySelector(`.setup-similar-list`);
 
 const setupOpen = document.querySelector(`.setup-open`);
@@ -29,23 +30,11 @@ const wizardEyes = setupWizard.querySelector(`.wizard-eyes`);
 const inputEyes = blockSetup.querySelector(`.js-eyes-color`);
 let indexEyes = 0;
 
-wizardCoat.addEventListener(`click`, function () {
-  indexCoat = (indexCoat + 1) % HERO_COAT.length;
-  wizardCoat.style.fill = HERO_COAT[indexCoat];
-  inputCoat.value = HERO_COAT[indexCoat];
-});
-
-wizardEyes.addEventListener(`click`, function () {
-  indexEyes = (indexEyes + 1) % HERO_EYES.length;
-  wizardEyes.style.fill = HERO_EYES[indexEyes];
-  inputEyes.value = HERO_EYES[indexEyes];
-});
-
-setupFireBall.addEventListener(`click`, function () {
-  indexFireball = (indexFireball + 1) % HERO_FIREBALL.length;
-  setupFireBall.style.backgroundColor = HERO_FIREBALL[indexFireball];
-  inputFireball.value = HERO_FIREBALL[indexFireball];
-});
+const upLoad = blockSetup.querySelector(`.upload`);
+const setupCoord = {
+  x: blockSetup.style.left,
+  y: blockSetup.style.top
+};
 
 setupUserName.addEventListener(`keydown`, function (evt) {
   if (evt.key === KEYS.escape) {
@@ -61,7 +50,16 @@ const onPopupEscPress = function (evt) {
 };
 
 const openPopup = function () {
+  blockSetup.style.left = setupCoord.x;
+  blockSetup.style.top = setupCoord.y;
+
   blockSetup.classList.remove(`hidden`);
+
+  window.colorize(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
+  window.colorize(wizardCoat, inputCoat, indexCoat, HERO_COAT);
+  window.colorize(wizardEyes, inputEyes, indexEyes, HERO_EYES);
+
+  window.moveSetup(upLoad);
 
   document.addEventListener(`keydown`, onPopupEscPress);
 };
@@ -70,6 +68,11 @@ const closePopup = function () {
   blockSetup.classList.add(`hidden`);
 
   document.removeEventListener(`keydown`, onPopupEscPress);
+
+  window.colorizeClear(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
+  window.colorizeClear(wizardCoat, inputCoat, indexCoat, HERO_COAT);
+  window.colorizeClear(wizardEyes, inputEyes, indexEyes, HERO_EYES);
+
 };
 
 setupOpen.addEventListener(`click`, function () {
@@ -134,6 +137,4 @@ const getWizards = function () {
   return wizards;
 };
 
-initSetup();
-
-
+window.addEventListener(`load`, initSetup);
