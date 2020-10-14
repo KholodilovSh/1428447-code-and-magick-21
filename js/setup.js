@@ -56,9 +56,9 @@ const openPopup = function () {
 
   blockSetup.classList.remove(`hidden`);
 
-  window.colorize(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
-  window.colorize(wizardCoat, inputCoat, indexCoat, HERO_COAT);
-  window.colorize(wizardEyes, inputEyes, indexEyes, HERO_EYES);
+  window.dialog.colorize(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
+  window.dialog.colorize(wizardCoat, inputCoat, indexCoat, HERO_COAT);
+  window.dialog.colorize(wizardEyes, inputEyes, indexEyes, HERO_EYES);
 
   window.moveSetup(upLoad);
 
@@ -70,9 +70,9 @@ const closePopup = function () {
 
   document.removeEventListener(`keydown`, onPopupEscPress);
 
-  window.colorizeClear(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
-  window.colorizeClear(wizardCoat, inputCoat, indexCoat, HERO_COAT);
-  window.colorizeClear(wizardEyes, inputEyes, indexEyes, HERO_EYES);
+  window.dialog.colorizeClear(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
+  window.dialog.colorizeClear(wizardCoat, inputCoat, indexCoat, HERO_COAT);
+  window.dialog.colorizeClear(wizardEyes, inputEyes, indexEyes, HERO_EYES);
 
 };
 
