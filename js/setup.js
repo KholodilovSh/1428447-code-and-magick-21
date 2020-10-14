@@ -60,7 +60,7 @@ const openPopup = function () {
   window.dialog.colorize(wizardCoat, inputCoat, indexCoat, HERO_COAT);
   window.dialog.colorize(wizardEyes, inputEyes, indexEyes, HERO_EYES);
 
-  window.moveSetup(upLoad);
+  window.move.moveSetup(upLoad);
 
   document.addEventListener(`keydown`, onPopupEscPress);
 };
