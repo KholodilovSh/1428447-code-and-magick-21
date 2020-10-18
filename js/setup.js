@@ -1,8 +1,8 @@
 "use strict";
 
 const HEROES = 4;
-const HERO_NAMES = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
-const HERO_SURNAMES = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
+// const HERO_NAMES = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
+// const HERO_SURNAMES = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
 const HERO_COAT = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
 const HERO_EYES = [`black`, `red`, `blue`, `yellow`, `green`];
 const HERO_FIREBALL = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
@@ -17,6 +17,8 @@ const similarListElement = blockSetup.querySelector(`.setup-similar-list`);
 const setupOpen = document.querySelector(`.setup-open`);
 const setupClose = blockSetup.querySelector(`.setup-close`);
 const setupUserName = blockSetup.querySelector(`.setup-user-name`);
+
+const setupWizardForm = blockSetup.querySelector(`.setup-wizard-form`);
 
 const setupFireBall = blockSetup.querySelector(`.setup-fireball-wrap`);
 const inputFireball = blockSetup.querySelector(`.js-fireball-color`);
@@ -96,46 +98,68 @@ setupClose.addEventListener(`keydown`, function (evt) {
   }
 });
 
+const errorHandler = function (errorMessage) {
+  const node = document.createElement(`div`);
+  node.style = `z-index: 100; margin: 0 auto; text-align: center; background-color: red;`;
+  node.style.position = `absolute`;
+  node.style.left = 0;
+  node.style.right = 0;
+  node.style.fontSize = `30px`;
+
+  node.textContent = errorMessage;
+  document.body.insertAdjacentElement(`afterbegin`, node);
+};
+
 const initSetup = function () {
   blockSetup.querySelector(`.setup-similar`).classList.remove(`hidden`);
 
-  const wizards = getWizards();
+  // const wizards = getWizards();
+  // showWizards(wizards);
+  window.backend.load(showWizards, errorHandler);
 
-  showWizards(wizards);
+  setupWizardForm.addEventListener(`submit`, function (evt) {
+    window.backend.save(new FormData(setupWizardForm), function () {
+      blockSetup.classList.add(`hidden`);
+    }, errorHandler);
+    evt.preventDefault();
+  });
+
 };
 
 const renderWizard = function (wizard) {
   const wizardElement = wizardTemplate.cloneNode(true);
 
   wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
-  wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.coatColor;
-  wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.eyesColor;
+  wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.colorCoat;
+  wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.colorEyes;
 
   return wizardElement;
 };
 
 const showWizards = function (wizards) {
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
+  const LIMIT_HEROES = HEROES < wizards.length ? HEROES : wizards.length;
+  for (let i = 0; i < LIMIT_HEROES; i++) {
+    const j = HEROES >= wizards.length ? i : getRandomNumber(0, wizards.length - 1);
+    fragment.appendChild(renderWizard(wizards[j]));
   }
   similarListElement.appendChild(fragment);
 };
 
 const getRandomNumber = (minNumber = 0, maxNumber = 100, roundDigit = 0) => minNumber + Math.round((maxNumber - minNumber) * Math.random(), roundDigit);
 
-const getRandomItem = (array) => array[getRandomNumber(0, array.length - 1)];
+// const getRandomItem = (array) => array[getRandomNumber(0, array.length - 1)];
 
-const getWizards = function () {
-  const wizards = [];
-  for (let i = 0; i < HEROES; i++) {
-    wizards.push({
-      name: `${getRandomItem(HERO_NAMES)} ${getRandomItem(HERO_SURNAMES)}`,
-      coatColor: getRandomItem(HERO_COAT),
-      eyesColor: getRandomItem(HERO_EYES)
-    });
-  }
-  return wizards;
-};
+// const getWizards = function () {
+//   const wizards = [];
+//   for (let i = 0; i < HEROES; i++) {
+//     wizards.push({
+//       name: `${getRandomItem(HERO_NAMES)} ${getRandomItem(HERO_SURNAMES)}`,
+//       coatColor: getRandomItem(HERO_COAT),
+//       eyesColor: getRandomItem(HERO_EYES)
+//     });
+//   }
+//   return wizards;
+// };
 
 window.addEventListener(`load`, initSetup);
