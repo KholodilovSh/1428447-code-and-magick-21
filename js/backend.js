@@ -2,23 +2,33 @@
 
 (function () {
 
-  const URL = `https://21.javascript.pages.academy/code-and-magick/data`;
+  const TIMEOUT_IN_MS = 10000;
+
   const StatusCode = {
     OK: 200
   };
-  const TIMEOUT_IN_MS = 10000;
+
+  const serverParams = {
+    load: {
+      method: `GET`,
+      url: `https://21.javascript.pages.academy/code-and-magick/data`},
+    save: {
+      method: `POST`,
+      url: `https://21.javascript.pages.academy/code-and-magick`}
+  };
 
   const load = function (onLoad, onError) {
-    linkServer(onLoad, onError);
+    makeRequestToServer(onLoad, onError);
   };
 
   const save = function (data, onLoad, onError) {
-    linkServer(onLoad, onError, data);
+    makeRequestToServer(onLoad, onError, data);
   };
 
-  const linkServer = function (onLoad, onError, data) {
+  const makeRequestToServer = function (onLoad, onError, data) {
     const xhr = new XMLHttpRequest();
     xhr.responseType = `json`;
+    const {method, url} = data ? serverParams.save : serverParams.load;
 
     xhr.addEventListener(`load`, function () {
       if (xhr.status === StatusCode.OK) {
@@ -36,7 +46,7 @@
 
     xhr.timeout = TIMEOUT_IN_MS;
 
-    xhr.open(data ? `POST` : `GET`, URL);
+    xhr.open(method, url);
     xhr.send(data);
   };
 
