@@ -8,27 +8,26 @@
     OK: 200
   };
 
-  const serverParams = {
-    load: {
-      method: `GET`,
-      url: `https://21.javascript.pages.academy/code-and-magick/data`},
-    save: {
-      method: `POST`,
-      url: `https://21.javascript.pages.academy/code-and-magick`}
+  const URL = {
+    LOAD: `https://21.javascript.pages.academy/code-and-magick/data`,
+    SAVE: `https://21.javascript.pages.academy/code-and-magick`
   };
 
   const load = function (onLoad, onError) {
-    makeRequestToServer(onLoad, onError);
+    const xhr = makeRequestToServer(onLoad, onError);
+    xhr.open(`GET`, URL.LOAD);
+    xhr.send();
   };
 
   const save = function (data, onLoad, onError) {
-    makeRequestToServer(onLoad, onError, data);
+    const xhr = makeRequestToServer(onLoad, onError);
+    xhr.open(`POST`, URL.SAVE);
+    xhr.send(data);
   };
 
-  const makeRequestToServer = function (onLoad, onError, data) {
+  const makeRequestToServer = function (onLoad, onError) {
     const xhr = new XMLHttpRequest();
     xhr.responseType = `json`;
-    const {method, url} = data ? serverParams.save : serverParams.load;
 
     xhr.addEventListener(`load`, function () {
       if (xhr.status === StatusCode.OK) {
@@ -46,8 +45,7 @@
 
     xhr.timeout = TIMEOUT_IN_MS;
 
-    xhr.open(method, url);
-    xhr.send(data);
+    return xhr;
   };
 
   window.backend = {
