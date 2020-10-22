@@ -2,7 +2,7 @@
 
 (function () {
 
-  window.moveSetup = function (element) {
+  const moveSetup = function (element) {
     element.addEventListener(`mousedown`, onMouseDown);
   };
 
@@ -52,6 +52,9 @@
 
     document.addEventListener(`mousemove`, onMouseMove);
     document.addEventListener(`mouseup`, onMoueUp);
+  };
 
+  window.move = {
+    moveSetup
   };
 })();

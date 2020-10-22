@@ -2,7 +2,7 @@
 
 (function () {
 
-  window.colorize = function (element, input, index, arrayColors) {
+  const colorize = function (element, input, index, arrayColors) {
     element.addEventListener(`click`, colorizeOnClick(element, input, index, arrayColors));
   };
 
@@ -18,7 +18,12 @@
     });
   };
 
-  window.colorizeClear = function (element, input, index, arrayColors) {
+  const colorizeClear = function (element, input, index, arrayColors) {
     element.removeEventListener(`click`, colorizeOnClick(element, input, index, arrayColors));
+  };
+
+  window.dialog = {
+    colorize,
+    colorizeClear
   };
 })();
