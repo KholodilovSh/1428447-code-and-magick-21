@@ -2,6 +2,9 @@
 
 (function () {
 
+  const DEBOUNCE_INTERVAL = 500; // ms
+  let lastTimeout;
+
   const colorize = function (element, input, index, arrayColors, saveColor) {
     element.addEventListener(`click`, colorizeOnClick(element, input, index, arrayColors, saveColor));
   };
@@ -18,7 +21,14 @@
 
       if (saveColor) {
         saveColor.save = arrayColors[index];
-        window.updateWizards();
+
+        if (lastTimeout) {
+          window.clearTimeout(lastTimeout);
+        }
+
+        lastTimeout = window.setTimeout(function () {
+          window.updateWizards();
+        }, DEBOUNCE_INTERVAL);
       }
     });
   };

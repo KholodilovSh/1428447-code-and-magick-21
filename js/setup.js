@@ -122,7 +122,7 @@ setupClose.addEventListener(`keydown`, function (evt) {
 
 const successHandler = function (data) {
   wizards = data;
-  updateWizards();
+  window.updateWizards();
 };
 
 const initSetup = function () {
