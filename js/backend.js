@@ -8,20 +8,20 @@
     OK: 200
   };
 
-  const URL = {
+  const ServerUrl = {
     LOAD: `https://21.javascript.pages.academy/code-and-magick/data`,
     SAVE: `https://21.javascript.pages.academy/code-and-magick`
   };
 
   const load = function (onLoad, onError) {
     const xhr = makeRequestToServer(onLoad, onError);
-    xhr.open(`GET`, URL.LOAD);
+    xhr.open(`GET`, ServerUrl.LOAD);
     xhr.send();
   };
 
   const save = function (data, onLoad, onError) {
     const xhr = makeRequestToServer(onLoad, onError);
-    xhr.open(`POST`, URL.SAVE);
+    xhr.open(`POST`, ServerUrl.SAVE);
     xhr.send(data);
   };
 
