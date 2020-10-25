@@ -20,11 +20,7 @@
       input.value = arrayColors[index];
 
       if (indicator) {
-        if (indicator === `coatColor`) {
-          window.setup.coatColor = arrayColors[index];
-        } else {
-          window.setup.eyesColor = arrayColors[index];
-        }
+        window.setup[indicator] = arrayColors[index];
 
         if (lastTimeout) {
           window.clearTimeout(lastTimeout);
