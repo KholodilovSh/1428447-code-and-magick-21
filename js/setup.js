@@ -35,20 +35,16 @@ const setupCoord = {
 };
 
 let wizards = [];
-const coatColor = {
-  save: `rgb(101, 137, 164)`
-};
-const eyesColor = {
-  save: `black`
-};
+const coatColor = `rgb(101, 137, 164)`;
+const eyesColor = `black`;
 
 const getRank = function (wizard) {
   let rank = 0;
 
-  if (wizard.colorCoat === coatColor.save) {
+  if (wizard.colorCoat === window.setup.coatColor) {
     rank += 2;
   }
-  if (wizard.colorEyes === eyesColor.save) {
+  if (wizard.colorEyes === window.setup.eyesColor) {
     rank += 1;
   }
 
@@ -81,8 +77,8 @@ const openPopup = function () {
   blockSetup.classList.remove(`hidden`);
 
   window.dialog.colorize(setupFireBall, inputFireball, indexFireball, HERO_FIREBALL);
-  window.dialog.colorize(wizardCoat, inputCoat, indexCoat, HERO_COAT, coatColor);
-  window.dialog.colorize(wizardEyes, inputEyes, indexEyes, HERO_EYES, eyesColor);
+  window.dialog.colorize(wizardCoat, inputCoat, indexCoat, HERO_COAT, `coatColor`);
+  window.dialog.colorize(wizardEyes, inputEyes, indexEyes, HERO_EYES, `eyesColor`);
 
   window.move.moveSetup(upLoad);
 
@@ -140,3 +136,9 @@ const initSetup = function () {
 };
 
 window.addEventListener(`load`, initSetup);
+
+window.setup = {
+  coatColor,
+  eyesColor
+};
+
