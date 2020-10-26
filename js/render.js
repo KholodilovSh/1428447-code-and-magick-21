@@ -4,7 +4,7 @@
   const HEROES = 4;
   const wizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 
-  const similarListElement = window.blockSetup.querySelector(`.setup-similar-list`);
+  const similarListElement = window.setup.blockSetup.querySelector(`.setup-similar-list`);
 
 
   const renderWizard = function (wizard) {

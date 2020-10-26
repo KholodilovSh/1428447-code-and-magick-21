@@ -27,7 +27,7 @@
         }
 
         lastTimeout = window.setTimeout(function () {
-          window.updateWizards();
+          window.setup.updateWizards();
         }, DEBOUNCE_INTERVAL);
       }
     });

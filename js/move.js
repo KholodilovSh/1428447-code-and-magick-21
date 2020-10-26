@@ -31,8 +31,8 @@
         y: moveEvt.clientY
       };
 
-      window.blockSetup.style.top = window.blockSetup.offsetTop - shift.y + `px`;
-      window.blockSetup.style.left = window.blockSetup.offsetLeft - shift.x + `px`;
+      window.setup.blockSetup.style.top = window.setup.blockSetup.offsetTop - shift.y + `px`;
+      window.setup.blockSetup.style.left = window.setup.blockSetup.offsetLeft - shift.x + `px`;
     };
 
     const onMoueUp = function (upEvt) {
@@ -44,9 +44,9 @@
       if (isDragged) {
         const onClickPreventDefault = function (clickEvt) {
           clickEvt.preventDefault();
-          window.blockSetup.removeEventListener(`click`, onClickPreventDefault);
+          window.setup.blockSetup.removeEventListener(`click`, onClickPreventDefault);
         };
-        window.blockSetup.addEventListener(`click`, onClickPreventDefault);
+        window.setup.blockSetup.addEventListener(`click`, onClickPreventDefault);
       }
     };
 
