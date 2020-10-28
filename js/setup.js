@@ -7,7 +7,6 @@ const HERO_FIREBALL = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
 const KeysCode = {ESCAPE: `Escape`, ENTER: `Enter`};
 
 const blockSetup = document.querySelector(`.setup`);
-// window.blockSetup = blockSetup;
 
 const setupOpen = document.querySelector(`.setup-open`);
 const setupClose = blockSetup.querySelector(`.setup-close`);
