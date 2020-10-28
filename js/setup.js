@@ -7,7 +7,6 @@ const HERO_FIREBALL = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
 const KeysCode = {ESCAPE: `Escape`, ENTER: `Enter`};
 
 const blockSetup = document.querySelector(`.setup`);
-window.blockSetup = blockSetup;
 
 const setupOpen = document.querySelector(`.setup-open`);
 const setupClose = blockSetup.querySelector(`.setup-close`);
@@ -51,7 +50,7 @@ const getRank = function (wizard) {
   return rank;
 };
 
-window.updateWizards = function () {
+const updateWizards = function () {
   window.render.showWizards(wizards.sort(function (left, right) {
     return getRank(right) - getRank(left);
   }));
@@ -118,7 +117,7 @@ setupClose.addEventListener(`keydown`, function (evt) {
 
 const successHandler = function (data) {
   wizards = data;
-  window.updateWizards();
+  updateWizards();
 };
 
 const initSetup = function () {
@@ -138,7 +137,9 @@ const initSetup = function () {
 window.addEventListener(`load`, initSetup);
 
 window.setup = {
+  blockSetup,
   coatColor,
-  eyesColor
+  eyesColor,
+  updateWizards
 };
 
