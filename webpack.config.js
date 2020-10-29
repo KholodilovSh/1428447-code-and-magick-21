@@ -17,9 +17,5 @@ module.exports = {
 		iife: true
 	},
   devtool: false,
-  watch: true,
-  watchOptions: {
-    aggregateTimeout: 200,
-    poll: 1000 // Check for changes every second
-  }
+  watch: true
 };
