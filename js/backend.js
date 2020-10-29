@@ -1,7 +1,5 @@
 "use strict";
 
-// (function () {
-
 const TIMEOUT_IN_MS = 10000;
 
 const StatusCode = {
@@ -52,5 +50,3 @@ window.backend = {
   load,
   save
 };
-
-// })();

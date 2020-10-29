@@ -1,7 +1,5 @@
 "use strict";
 
-// (function () {
-
 const moveSetup = function (element) {
   element.addEventListener(`mousedown`, onMouseDown);
 };
@@ -57,4 +55,3 @@ const onMouseDown = function (downEvt) {
 window.move = {
   moveSetup
 };
-// })();

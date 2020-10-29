@@ -1,7 +1,5 @@
 "use strict";
 
-// (function () {
-
 const errorHandler = function (errorMessage) {
   const node = document.createElement(`div`);
   node.style = `z-index: 100; margin: 0 auto; text-align: center; background-color: red;`;
@@ -17,4 +15,3 @@ const errorHandler = function (errorMessage) {
 window.utils = {
   errorHandler
 };
-// })();

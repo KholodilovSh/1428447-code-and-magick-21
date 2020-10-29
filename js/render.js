@@ -1,6 +1,5 @@
 "use strict";
 
-// (function () {
 const HEROES = 4;
 const wizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 
@@ -34,4 +33,3 @@ const showWizards = function (wizards) {
 window.render = {
   showWizards
 };
-// })();
