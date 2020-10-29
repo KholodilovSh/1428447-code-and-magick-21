@@ -16,5 +16,10 @@ module.exports = {
 		path: path.resolve(__dirname),
 		iife: true
 	},
-	devtool: false
+  devtool: false,
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 200,
+    poll: 1000 // Check for changes every second
+  }
 };
